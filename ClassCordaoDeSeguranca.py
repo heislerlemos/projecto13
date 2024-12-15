@@ -1,44 +1,36 @@
 class CordaoDeSeguranca:
     def __init__(self,perimetro,altura,estado,tipologia,cantCabinas,iluminda,estadocabinas):
-        self.id = id 
-        self.perimetro = perimetro
-        self.altura = altura
-        self.estado = estado
-        self.tipologia = tipologia
-        self.cantCabinas = cantCabinas
-        self.iluminda = iluminda
-        self.estadocabinas = estadocabinas
+        self._perimetro = perimetro
+        self._altura = altura
+        self._estado = estado
+        self._tipologia = tipologia
+        self._cantCabinas = cantCabinas
+        self._iluminda = iluminda
+        self._estadocabinas = estadocabinas
         
-        global dic 
-        dic = {}    
-        dic['perimetro'] = self.perimetro
-        dic['altura'] = self.altura
-        dic['estado'] = self.estado
-        dic['tipologia'] = self.tipologia
-        dic['cantCabians'] = self.cantCabinas
-        dic['iluminda'] = self.iluminda
-        dic['estadocabinas'] = self.estadocabinas
+        
+     
         
          
     def MostrarTipologia(self):
-        return dic['tipologia']
+        return self._tipologia
     
     def MostrarEstado(self):
-        return dic['estado']
+        return self._estado
     
     def MostrarAltura(self):
-        return  dic['altura']
+        return  self._altura
         
     def MostrarPerímetro(self): 
-        return dic['perimetro']
+        return self._perimetro
     
     def MostrarQuantidadCabinas(self):
-        return dic['cantCabians']
+        return self._cantCabinas
     
     def MostrarEstadoCabinas(self):
-        return dic['estadocabinas']
+        return self._MostrarEstado
     
     def Mostrariluminação(self):
-        return dic['iluminda']
+        return self._iluminda
      
     
