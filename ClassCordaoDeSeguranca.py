@@ -8,9 +8,7 @@ class CordaoDeSeguranca:
         self._iluminda = iluminda
         self._estadocabinas = estadocabinas
         
-        
-     
-        
+            
          
     def MostrarTipologia(self):
         return self._tipologia

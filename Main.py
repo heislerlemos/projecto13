@@ -10,7 +10,12 @@ lista_de_objectos = []
 
 while prompt1 == 'sim':
     print ("Criando o objecto")
-    perimetro = input("insira  o perímetro do cordão de segurança:")
+    
+    try:
+        perimetro = int(input("insira  o perímetro do cordão de segurança:"))    
+    except ValueError:
+        print("Tem que ser um numero inteiro ")    
+        
     topologia = input("insira tipologia do cordão de segurança, que pode ser uma vedação ou um muro:")
     altura = input("insira a altura da linha de segurança:")
     estado = input("insira o estado da linha de segurança, que pode ser: bom, mau ou regular:")
