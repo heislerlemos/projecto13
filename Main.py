@@ -17,7 +17,6 @@ perguntaprompt= [
 resposta= inquirer.prompt(perguntaprompt)
 prompt1 = resposta['estado']
 
-
 lista_de_objectos = []
 
 while prompt1 == 'sim':
@@ -54,7 +53,8 @@ while prompt1 == 'sim':
                          ),
             ]
     
-    estado = inquirer.prompt(perguntalinha)
+    answer = inquirer.prompt(perguntalinha)
+    estado = answer['estado']
     
     # Inserir Quantidade
     try: 
@@ -63,13 +63,13 @@ while prompt1 == 'sim':
         print("tem que ser numero inteiro")
     
     # Inserir Iluminação      
-    iluminacao = input("insira a  iluminação  [v] se estiver acceso, caso contrário, [f]:")
+    iluminda = input("insira a  iluminação  [v] se estiver acceso, caso contrário, [f]:")
     
     
-    if iluminacao == 'v':
-        iluminacao = True
-    elif iluminacao == 'f':
-        iluminacao = False
+    if iluminda== 'v':
+        iluminda = True
+    elif iluminda == 'f':
+        iluminda = False
     else: 
         print("Valor não aceite")
         
@@ -83,9 +83,14 @@ while prompt1 == 'sim':
             ]
     
     estadocabinas = inquirer.prompt(perguntacabina)
+    try: 
+         cantCabinas = int(input("insirir quantidade de cabinas"))
+    except ValueError:
+         print("insira valor inteiro")
     
+    tipologia = input("insira typologia")
     
-    obj = CordaoDeSeguranca(perimetro,topologia,altura,estado,quantidade,iluminacao,estadocabinas)  
+    obj = CordaoDeSeguranca(perimetro,altura,estado,tipologia,cantCabinas,iluminda,estadocabinas)  
     
     lista_de_objectos.append(obj)  
     
@@ -96,28 +101,63 @@ while prompt1 == 'sim':
              ),
             ]
     
-    resposta = inquirer.prompt(perguntaprompt)
+    resposta= inquirer.prompt(perguntaprompt)
     prompt1 = resposta['estado']
 
 
 
     os.system('clear')
 
-visualizar = input("O que pretende visualizar | [1]-Perimetro e altura | [2]- Outro : ")
+visualizar = input(
+                  """
+                    O que pretende visualizar:
+                   [1]- Conhecer a altura e o perímetro do cordão de segurança dada uma tipologia\n 
+                   [2]- Alertar para a necessidade de reparação do cordão de segurança, informando as caraterísticas do mesmo\n 
+                   [3]- Saber quantas cabinas não possuem iluminação\n 
+                   [4]- Alertar quantas cabinas estão a necessitar de reparação \n
+                   [5]- Listar as linhas de segurança do tipo muro, onde o estado construtivo de suas cabinas é ruim \n
+                   """
+                   )
+
+
+
     
 match visualizar:
     case "1":
-            print("verificando o perimetro e altura de todos os objectos:")
+            print("[1]-Verificando o perimetro e altura de todos os objectos:")
             for object in lista_de_objectos:
-                    print(f"perimetro : {object.MostrarPerímetro()} | altura : {object.MostrarAltura()} ")
+                    print(f"Nº {id}, UUID: {object._id}  perimetro : {object.MostrarPerímetro()} | altura : {object.MostrarAltura()} ")
+                    
+
     case "2":
-                print("adeus")
-                exit             
+            print("[2]Verificando cordões de segurança que necessitam reparação")
+            id = 0
+            for object in lista_de_objectos:
+                
+                if object.MostrarEstadoCabinas() == 'mau':
+                    id += 1
+                    print (f"Nº {id}, UUID: {object._id} precisa de reparação ,{object.MostrarEstadoCabinas()}")
+                    
+
+
+    case "3":
+            print("[3]-Cabinas sem uluminação ?")  
+            id = 0
+            for object in lista_de_objectos:
+                
+                if object.Mostrariluminação() == False:                
+                    id += 1
+                    print(f"Nº {id}, UUID: {object._id} precisa de iluminação, {object.Mostrariluminação()}")
+
+    
+   
+
 
 
             
 
     
+  
   
  
 

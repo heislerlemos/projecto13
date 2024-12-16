@@ -1,5 +1,8 @@
+import uuid
+
+
 class CordaoDeSeguranca:
-    def __init__(self,perimetro,altura,estado,tipologia,cantCabinas,iluminda,estadocabinas):
+    def __init__(self,perimetro,altura,estado,tipologia,cantCabinas,iluminda,estadocabinas,id=None):
         self._perimetro = perimetro
         self._altura = altura
         self._estado = estado
@@ -7,7 +10,8 @@ class CordaoDeSeguranca:
         self._cantCabinas = cantCabinas
         self._iluminda = iluminda
         self._estadocabinas = estadocabinas
-        
+        self._id =  id if id else uuid.uuid4()
+
             
          
     def MostrarTipologia(self):
@@ -26,8 +30,8 @@ class CordaoDeSeguranca:
         return self._cantCabinas
     
     def MostrarEstadoCabinas(self):
-        return self._MostrarEstado
-    
+        return self._estado
+        
     def Mostrariluminação(self):
         return self._iluminda
      
