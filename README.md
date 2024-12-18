@@ -12,6 +12,6 @@ regular).
 
 ## Acknowledgements
 
- - [Heilsler Lemos](https://www.linkedin.com/in/heisler-stlano-969624146/)
+ - [Heisler Lemos](https://www.linkedin.com/in/heisler-stlano-969624146/)
  - [Professor Jesus Kindelan](https://www.linkedin.com/in/jes%C3%BAs-abraham-kindel%C3%A1n-307934191/)
 
