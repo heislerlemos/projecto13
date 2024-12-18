@@ -1,6 +1,7 @@
 import uuid
 
 class CordaoDeSeguranca:
+    
     def __init__(self,perimetro,altura,estado,tipologia,cantCabinas,iluminda,estadocabinas,id=None):
         self._perimetro = perimetro
         self._altura = altura

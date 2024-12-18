@@ -91,8 +91,6 @@ while prompt1 == 'sim':
          print("insira valor inteiro")
     
 
-
-    
     obj = CordaoDeSeguranca(perimetro,altura,estado,tipologia,cantCabinas,iluminda,estadocabinas)  
     
     lista_de_objectos.append(obj)  
@@ -107,33 +105,24 @@ while prompt1 == 'sim':
     resposta= inquirer.prompt(perguntaprompt)
     prompt1 = resposta['estado']
 
-
-
     os.system('clear')
 
-visualizar = input(
-                  """
-                    O que pretende visualizar:
-                   [1]- Conhecer a altura e o perímetro do cordão de segurança dada uma tipologia\n 
-                   [2]- Alertar para a necessidade de reparação do cordão de segurança, informando as caraterísticas do mesmo\n 
-                   [3]- Saber quantas cabinas não possuem iluminação\n 
-                   [4]- Alertar quantas cabinas estão a necessitar de reparação \n
-                   [5]- Listar as linhas de segurança do tipo muro, onde o estado construtivo de suas cabinas é ruim \n
-                   """
-                   )
-
-
 
     
-match visualizar:
+def opcoe(escolha):   
+    match escolha:
     
-    case "1":
+        case "1":
             print("[1]-Verificando o perimetro e altura de todos os objectos:")
+            id = 0
             for object in lista_de_objectos:
+                    id += 1
                     print(f"Nº {id}, UUID: {object._id}  perimetro : {object.MostrarPerímetro()} | altura : {object.MostrarAltura()} ")
-                    
+           
+            input("Click ENTER para continuar...")                     
+            menu()  
 
-    case "2":
+        case "2":
             print("[2]Verificando cordões de segurança que necessitam reparação")
             id = 0
             for object in lista_de_objectos:
@@ -141,10 +130,11 @@ match visualizar:
                 if object.MostrarEstado() == 'mau':
                     id += 1
                     print (f"Nº {id}, UUID: {object._id} precisa de reparação ,{object.MostrarEstado()}")
-                    
 
-
-    case "3":
+            input("Click ENTER para continuar...")                                       
+            menu() 
+                   
+        case "3":
             print("[3]-Cabinas sem iluminação ?")  
             id = 0
             for object in lista_de_objectos:
@@ -152,8 +142,11 @@ match visualizar:
                 if object.Mostrariluminação() == False:                
                     id += 1
                     print(f"Nº {id}, UUID: {object._id} precisa de iluminação, o estado é : {object.Mostrariluminação()}")
+            
+            input("Click ENTER para continuar...")                                 
+            menu()
     
-    case "4":
+        case "4":
             print("[4]-Cabinas que necessitam reparação")
             id = 0 
             for object in lista_de_objectos:
@@ -161,8 +154,11 @@ match visualizar:
                 if object.MostrarEstadoCabinas() == 'mau':
                     id += 1
                     print (f"Nº {id}, UUID: {object._id} precisa de reparação , esta em  {object.MostrarEstadoCabinas()} estado")
+                  
+            input("Click ENTER para continuar...")                     
+            menu()
                     
-    case "5":
+        case "5":
             print("[5]-Lista de linha de segurança")
             id = 0
             
@@ -171,14 +167,32 @@ match visualizar:
                 if object.MostrarTipologia() == 'muro' and  object.MostrarEstadoCabinas() == 'mau':
                     id += 1
                     print (f"Nº {id}, UUID: {object._id} esta utilizando ,{object.MostrarTipologia()} e as cabinas estao em {object.MostrarEstadoCabinas()} estado")
-
-
-    
-   
-
-
-
             
+            input("Click ENTER para continuar...")                     
+            menu()
+        
+        case "6":
+            print("[6]-Programa terminado adeus")
+            exit
+            
+
+
+def menu():
+    escolha = input(
+                   """
+                   O que pretende visualizar:
+                   [1]- Conhecer a altura e o perímetro do cordão de segurança dada uma tipologia\n 
+                   [2]- Alertar para a necessidade de reparação do cordão de segurança, informando as caraterísticas do mesmo\n 
+                   [3]- Saber quantas cabinas não possuem iluminação\n 
+                   [4]- Alertar quantas cabinas estão a necessitar de reparação \n
+                   [5]- Listar as linhas de segurança do tipo muro, onde o estado construtivo de suas cabinas é ruim \n
+                   [6]- Terminar o programa
+                   """
+                   )
+    opcoe(escolha)   
+            
+            
+menu()
 
     
   
