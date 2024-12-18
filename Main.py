@@ -8,14 +8,14 @@ tprint("Controlo de Camaras Lda")
 
 
 perguntaprompt= [
-        inquirer.List('estado',
+        inquirer.List('escolha',
             message ="Quer adicionar equipamentos ?:",
             choices= ['sim', 'nao'],
              ),
             ]
     
 resposta= inquirer.prompt(perguntaprompt)
-prompt1 = resposta['estado']
+prompt1 = resposta['escolha']
 
 lista_de_objectos = []
 
@@ -29,13 +29,14 @@ while prompt1 == 'sim':
         
     # Inserir Topologia            
     perguntatopologia = [
-            inquirer.List('estado',
+            inquirer.List('tipologia',
                            message ="Insira o estado da linha de segurança :",
                            choices= ['muro', 'vedação'],
                          ),
             ]
     
-    topologia = inquirer.prompt(perguntatopologia)
+    resposta = inquirer.prompt(perguntatopologia)
+    tipologia = resposta['tipologia']
     
     
     # Inserir Altura
@@ -47,14 +48,14 @@ while prompt1 == 'sim':
     # Inserir Estado
     
     perguntalinha = [
-            inquirer.List('estado',
+            inquirer.List('estadolinha',
                            message ="Insira o estado da linha de segurança :",
                            choices= ['bom', 'mau', 'regular'],
                          ),
             ]
     
     answer = inquirer.prompt(perguntalinha)
-    estado = answer['estado']
+    estado = answer['estadolinha']
     
     # Inserir Quantidade
     try: 
@@ -73,22 +74,24 @@ while prompt1 == 'sim':
     else: 
         print("Valor não aceite")
         
-    #estadocabinas = input('insira o estado construtivo das cabinas do cordão de segurança, que pode ser bom, mau ou regular:')
     
     perguntacabina = [
             inquirer.List('estadocabina',
-                           message="Insira o estado da linha de segurança :",
+                           message="Insira o estado da cabina de segurança :",
                            choices=['bom', 'mau', 'regular'],
                          ),
             ]
     
-    estadocabinas = inquirer.prompt(perguntacabina)
+    answer = inquirer.prompt(perguntacabina)
+    estadocabinas = answer['estadocabina']
+    
     try: 
          cantCabinas = int(input("insirir quantidade de cabinas"))
     except ValueError:
          print("insira valor inteiro")
     
-    tipologia = input("insira typologia")
+
+
     
     obj = CordaoDeSeguranca(perimetro,altura,estado,tipologia,cantCabinas,iluminda,estadocabinas)  
     
@@ -123,6 +126,7 @@ visualizar = input(
 
     
 match visualizar:
+    
     case "1":
             print("[1]-Verificando o perimetro e altura de todos os objectos:")
             for object in lista_de_objectos:
@@ -134,20 +138,40 @@ match visualizar:
             id = 0
             for object in lista_de_objectos:
                 
-                if object.MostrarEstadoCabinas() == 'mau':
+                if object.MostrarEstado() == 'mau':
                     id += 1
-                    print (f"Nº {id}, UUID: {object._id} precisa de reparação ,{object.MostrarEstadoCabinas()}")
+                    print (f"Nº {id}, UUID: {object._id} precisa de reparação ,{object.MostrarEstado()}")
                     
 
 
     case "3":
-            print("[3]-Cabinas sem uluminação ?")  
+            print("[3]-Cabinas sem iluminação ?")  
             id = 0
             for object in lista_de_objectos:
                 
                 if object.Mostrariluminação() == False:                
                     id += 1
-                    print(f"Nº {id}, UUID: {object._id} precisa de iluminação, {object.Mostrariluminação()}")
+                    print(f"Nº {id}, UUID: {object._id} precisa de iluminação, o estado é : {object.Mostrariluminação()}")
+    
+    case "4":
+            print("[4]-Cabinas que necessitam reparação")
+            id = 0 
+            for object in lista_de_objectos:
+                
+                if object.MostrarEstadoCabinas() == 'mau':
+                    id += 1
+                    print (f"Nº {id}, UUID: {object._id} precisa de reparação , esta em  {object.MostrarEstadoCabinas()} estado")
+                    
+    case "5":
+            print("[5]-Lista de linha de segurança")
+            id = 0
+            
+            for object in lista_de_objectos:
+                
+                if object.MostrarTipologia() == 'muro' and  object.MostrarEstadoCabinas() == 'mau':
+                    id += 1
+                    print (f"Nº {id}, UUID: {object._id} esta utilizando ,{object.MostrarTipologia()} e as cabinas estao em {object.MostrarEstadoCabinas()} estado")
+
 
     
    
