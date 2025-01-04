@@ -10,8 +10,17 @@ pelos quais passa o cordão de segurança, se estão iluminados ou
 não e o estado construtivo em que se encontram (bom, mau, 
 regular).
 
+# Output
+
+![image description](Output_A.png)
+![image description](Output_B.png)
+
+
+
 ## Acknowledgements
 
  - [Heisler Lemos](https://www.linkedin.com/in/heisler-stlano-969624146/)
  - [Professor Jesus Kindelan](https://www.linkedin.com/in/jes%C3%BAs-abraham-kindel%C3%A1n-307934191/)
+
+
 
